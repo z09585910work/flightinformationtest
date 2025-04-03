@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="52dp"
-                android:text="航機般號: "
+                android:text="航機班號: "
                 android:textSize="15dp"
                 app:layout_constraintBottom_toTopOf="@+id/BoardingGate"
                 app:layout_constraintStart_toStartOf="@+id/textView3"

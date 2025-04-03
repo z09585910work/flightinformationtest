@@ -17,7 +17,7 @@ class FlightRecyclerViewAdapter :
 
         fun bind(datas: FlightInfo) {
 
-            binding.AirLineNum.text="航機般號: ${datas.airLineNum}"
+            binding.AirLineNum.text="航機班號: ${datas.airLineNum}"
             binding.ExpectTime.text=datas.expectTime
             binding.RealTime.text=datas.realTime
             binding.BoardingGate.text="航廈/登機門: ${datas.airBoardingGate}"
