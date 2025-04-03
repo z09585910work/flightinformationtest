@@ -1,9 +1,17 @@
 package com.example.flightinformationtest.Data
 
 data class FlightInfo(
-    val FlightNumber: String?,
-    val AirlineName: String?,
-    val ScheduledTime: String?,
-    val ActualTime: String?,
-    val Status: String?
+    val expectTime: String,
+    val realTime: String,
+    val airLineName: String,
+    val airLineCode: String,
+    val airLineLogo: String,
+    val airLineUrl: String,
+    val airLineNum: String,
+    val upAirportCode: String,
+    val upAirportName: String,
+    val airPlaneType: String,
+    val airBoardingGate: String?,
+    val airFlyStatus: String,
+    val airFlyDelayCause: String?
 )
