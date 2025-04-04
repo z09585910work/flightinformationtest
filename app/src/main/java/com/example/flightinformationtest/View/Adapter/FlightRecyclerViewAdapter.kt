@@ -1,5 +1,6 @@
 package com.example.flightinformationtest.View.Adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +13,8 @@ import com.example.flightinformationtest.databinding.ItemFlightBinding
 class FlightRecyclerViewAdapter :
     RecyclerView.Adapter<FlightRecyclerViewAdapter.FlightViewHolder>() {
 
+    //private var flightList: List<FlightInfo> = emptyList()
     private var flightList: List<FlightInfo> = emptyList()
-
     class FlightViewHolder(private val binding: ItemFlightBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -34,7 +35,9 @@ class FlightRecyclerViewAdapter :
     }
 
     fun updateData(data: List<FlightInfo>) {
+
         flightList = data
+        Log.d("FlightRecyclerViewAdapter","data"+data)
         notifyDataSetChanged()
     }
 

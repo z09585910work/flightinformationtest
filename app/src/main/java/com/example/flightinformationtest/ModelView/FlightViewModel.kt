@@ -20,33 +20,46 @@ class FlightViewModel : ViewModel() {
 
     private var updateJob: Job? = null
 
-    private fun loadFlights() {
+    init {
+        startAutoUpdate()// 啟動 10 秒自動更新
+    }
+
+
+     fun loadFlights() {
         repository.fetchFlights { data ->
             _flights.postValue(data ?: emptyList())
+
+            Log.d("FlightViewModel", "loadFlights data: "+data)
         }
     }
 
     fun startAutoUpdate(intervalMillis: Long = 10000L) {
 
-        updateJob?.cancel()// 確保不重複啟動
+        if(updateJob?.isActive==true) return// 確保不重複啟動
 
         updateJob = viewModelScope.launch {
 
             while (isActive) {
 
                 try {
-
                     loadFlights()
+                    //val data=repository.
+
+                    delay(intervalMillis)
                 } catch (e: Exception) {
 
                     Log.e("FlightViewModel", "Fetch error: ${e.message}")
                 }
 
                 Log.d("FlightViewModel", "OKOKOK")
-                delay(intervalMillis)
+
             }
         }
 
+    }
+
+    fun stopFetching(){
+        updateJob?.cancel()
     }
 
     override fun onCleared() {
