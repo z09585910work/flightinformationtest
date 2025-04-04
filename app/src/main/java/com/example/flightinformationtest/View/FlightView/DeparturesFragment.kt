@@ -47,12 +47,15 @@ class DeparturesFragment : Fragment() {
         viewModel.flights.observe(viewLifecycleOwner, Observer {
             flights->
             flights?.let {
+
                 adapter.updateData(it)
             }?:run{
+
                 Toast.makeText(requireContext(), "載入失敗", Toast.LENGTH_SHORT).show()
             }
         })
 
-        viewModel.loadFlights()
+        //viewModel.loadFlights()
+        viewModel.startAutoUpdate()
     }
 }

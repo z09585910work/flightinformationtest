@@ -14,7 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class FlightRepository {
 
     private val flightApi: FlightApiService
-    private val BASE_URL="https://www.kia.gov.tw/API/"
+    private val BASE_URL = "https://www.kia.gov.tw/API/"
+
     init {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -22,11 +23,12 @@ class FlightRepository {
             .build()
         flightApi = retrofit.create(FlightApiService::class.java)
     }
+
     private val _error = MutableLiveData<String?>()
 
-    fun fetchFlights(callback:(List<FlightInfo>?)->Unit ){
+    fun fetchFlights(callback: (List<FlightInfo>?) -> Unit) {
 
-        flightApi.getFlights().enqueue(object : Callback<FlightResponse>{
+        flightApi.getFlights().enqueue(object : Callback<FlightResponse> {
             override fun onResponse(
                 call: Call<FlightResponse>,
                 response: Response<FlightResponse>
@@ -53,7 +55,6 @@ class FlightRepository {
         })
 
     }
-
 
 
 }
