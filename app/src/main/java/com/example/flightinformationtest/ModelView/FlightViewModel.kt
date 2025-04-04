@@ -24,12 +24,11 @@ class FlightViewModel : ViewModel() {
         startAutoUpdate()// 啟動 10 秒自動更新
     }
 
-
      fun loadFlights() {
         repository.fetchFlights { data ->
-//            _flights.postValue(data ?: emptyList())
+
             if(data != null){
-                _flights.postValue(ArrayList(data))
+                _flights.postValue(data ?: emptyList())
                 Log.d("FlightViewModel", "loadFlights data: "+data)
             }
 

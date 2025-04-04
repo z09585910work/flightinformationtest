@@ -30,13 +30,12 @@ class FlightRecyclerViewAdapter :
             Glide.with(itemView.context)
                 .load(datas.airLineLogo ?: R.drawable.ic_launcher_foreground)
                 .into(binding.AirLogo)
-
         }
     }
 
     fun updateData(data: List<FlightInfo>) {
 
-        flightList = data.toList()
+        flightList = data.toMutableList()
         Log.d("FlightRecyclerViewAdapter","data"+data)
         notifyDataSetChanged()
     }
@@ -53,6 +52,4 @@ class FlightRecyclerViewAdapter :
     }
 
     override fun getItemCount(): Int = flightList.size
-
-
 }
