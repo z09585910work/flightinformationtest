@@ -27,9 +27,12 @@ class FlightViewModel : ViewModel() {
 
      fun loadFlights() {
         repository.fetchFlights { data ->
-            _flights.postValue(data ?: emptyList())
+//            _flights.postValue(data ?: emptyList())
+            if(data != null){
+                _flights.postValue(ArrayList(data))
+                Log.d("FlightViewModel", "loadFlights data: "+data)
+            }
 
-            Log.d("FlightViewModel", "loadFlights data: "+data)
         }
     }
 

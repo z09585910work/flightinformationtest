@@ -123,6 +123,8 @@ class DeparturesFragment : Fragment() {
         viewModel.flights.observe(viewLifecycleOwner) { flights ->
             if (flights != null) {
                 adapter.updateData(flights)  // 確保 UI 會刷新
+
+                Log.d("DeparturesFragment","adapter.updateData(flights) flights: "+flights)
             } else {
                 Toast.makeText(requireContext(), "載入失敗", Toast.LENGTH_SHORT).show()
             }

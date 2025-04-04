@@ -36,7 +36,7 @@ class FlightRecyclerViewAdapter :
 
     fun updateData(data: List<FlightInfo>) {
 
-        flightList = data
+        flightList = data.toList()
         Log.d("FlightRecyclerViewAdapter","data"+data)
         notifyDataSetChanged()
     }
