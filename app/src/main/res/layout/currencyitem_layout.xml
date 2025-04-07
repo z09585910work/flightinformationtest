@@ -21,6 +21,6 @@
         android:gravity="right"
         android:textSize="20dp"
         android:text="匯率(元)"
-        android:paddingEnd="30dp"
+        android:paddingRight="30dp"
         />
 </LinearLayout>

@@ -35,7 +35,8 @@ class CurrencyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //viewModel.loadRates(API_KEY)
-        adapter= CurrencyAdapter(emptyList())
+//        adapter= CurrencyAdapter(emptyList())
+        adapter= CurrencyAdapter()
         binding.CurrentStateList.layoutManager=LinearLayoutManager(requireContext())
         binding.CurrentStateList.adapter=adapter
 

@@ -6,14 +6,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flightinformationtest.databinding.CurrencyitemLayoutBinding
 
-class CurrencyAdapter(private var rates: List<Pair<String, Double>>) :
+class CurrencyAdapter :
     RecyclerView.Adapter<CurrencyAdapter.CurrencyViewHolder>() {
+
+    private var rates: List<Pair<String, Double>> = emptyList()
+
     class CurrencyViewHolder(private val binding: CurrencyitemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(rate: Pair<String, Double>) {
             binding.CurrenName.text = rate.first
-            binding.ExchangRate.text = String.format("%.2f",rate.second)
+            binding.ExchangRate.text = String.format("%.3f",rate.second)
         }
 
     }
