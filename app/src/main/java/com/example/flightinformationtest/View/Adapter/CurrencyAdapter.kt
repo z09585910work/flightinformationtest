@@ -1,5 +1,6 @@
 package com.example.flightinformationtest.View.Adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -32,6 +33,7 @@ class CurrencyAdapter(private var rates: List<Pair<String, Double>>) :
     fun updateData(newRates: List<Pair<String, Double>>) {
         rates = newRates
         notifyDataSetChanged()
+        Log.d("CurrencyAdapter","updateData: "+rates)
     }
 
 }
