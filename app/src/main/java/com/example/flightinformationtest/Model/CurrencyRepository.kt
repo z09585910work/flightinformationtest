@@ -25,7 +25,21 @@ class CurrencyRepository {
             ) {
 
                 if (response.isSuccessful){
-                    _rates.value=response.body()?.rates ?: emptyMap()
+                    response.body()?.rates?.let {
+                        rate ->
+                        _rates.value= mapOf(
+
+                            "JPY" to rate.JPY,
+                            "USD" to rate.USD,
+                            "CNY" to rate.CNY,
+                            "EUR" to rate.EUR,
+                            "AUD" to rate.AUD,
+                            "KRW" to rate.KRW,
+
+                        )
+                    }?: run {
+                        _rates.value= emptyMap()
+                    }
 
                     Log.d("API連線狀態",response.isSuccessful.toString())
 

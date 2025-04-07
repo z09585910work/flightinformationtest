@@ -12,7 +12,7 @@ class CurrencyAdapter(private var rates: List<Pair<String, Double>>) :
 
         fun bind(rate: Pair<String, Double>) {
             binding.CurrenName.text = rate.first
-            binding.ExchangRate.text = rate.second.toString()
+            binding.ExchangRate.text = String.format("%.2f",rate.second)
         }
 
     }
