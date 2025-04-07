@@ -138,6 +138,6 @@ class DeparturesFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        viewModel.stopFetching()  // 🔥 離開畫面時停止更新，避免內存洩漏
+        viewModel.stopFetching()  // 離開畫面時停止更新，避免內存洩漏
     }
 }
