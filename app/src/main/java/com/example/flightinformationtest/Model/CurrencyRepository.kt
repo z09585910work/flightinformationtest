@@ -11,23 +11,22 @@ import retrofit2.Response
 
 class CurrencyRepository {
 
-    private  val _rates=MutableLiveData<Map<String,Double>>(emptyMap())
-    val rates:LiveData<Map<String,Double>> get() = _rates
+    private val _rates = MutableLiveData<Map<String, Double>>(emptyMap())
+    val rates: LiveData<Map<String, Double>> get() = _rates
 
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> get() = _error
 
-    fun fetchLatesRates(apiKey:String){
-        CurrencyClient.instance.getLatestRates(apiKey).enqueue(object : Callback<CurrencyResponse>{
+    fun fetchLatesRates(apiKey: String) {
+        CurrencyClient.instance.getLatestRates(apiKey).enqueue(object : Callback<CurrencyResponse> {
             override fun onResponse(
                 call: Call<CurrencyResponse>,
                 response: Response<CurrencyResponse>
             ) {
 
-                if (response.isSuccessful){
-                    response.body()?.rates?.let {
-                        rate ->
-                        _rates.value= mapOf(
+                if (response.isSuccessful) {
+                    response.body()?.rates?.let { rate ->
+                        _rates.value = mapOf(
 
                             "JPY" to rate.JPY,
                             "USD" to rate.USD,
@@ -35,20 +34,18 @@ class CurrencyRepository {
                             "EUR" to rate.EUR,
                             "AUD" to rate.AUD,
                             "KRW" to rate.KRW,
-
-                        )
-                    }?: run {
-                        _rates.value= emptyMap()
+                            )
+                    } ?: run {
+                        _rates.value = emptyMap()
                     }
 
-                    Log.d("API連線狀態",response.isSuccessful.toString())
+                    Log.d("API連線狀態", response.isSuccessful.toString())
 
-                }else{
+                } else {
                     _error.value = "API 回應錯誤: ${response.code()}"
 
-                    Log.d("API連線狀態",response.isSuccessful.toString()+"  "+_error.value)
+                    Log.d("API連線狀態", response.isSuccessful.toString() + "  " + _error.value)
                 }
-
 
             }
 
