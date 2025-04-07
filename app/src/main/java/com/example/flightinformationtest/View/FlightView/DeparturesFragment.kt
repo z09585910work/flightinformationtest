@@ -119,7 +119,7 @@ class DeparturesFragment : Fragment() {
         binding.RecyclerViewD.layoutManager = LinearLayoutManager(requireContext())
         binding.RecyclerViewD.adapter = adapter
 
-        // 🔥 監聽 flights 變化，確保 RecyclerView 更新
+        // 監聽 flights 變化，確保 RecyclerView 更新
         viewModel.flights.observe(viewLifecycleOwner) { flights ->
             if (flights != null) {
                 //adapter.updateData(flights)  // 確保 UI 會刷新
@@ -138,6 +138,6 @@ class DeparturesFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        viewModel.stopFetching()  // 🔥 離開畫面時停止更新，避免內存洩漏
+        viewModel.stopFetching()  // 離開畫面時停止更新，避免內存洩漏
     }
 }
