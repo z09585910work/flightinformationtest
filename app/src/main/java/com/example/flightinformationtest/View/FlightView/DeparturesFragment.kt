@@ -133,7 +133,7 @@ class DeparturesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.startAutoUpdate()  // ✅ 進入畫面時啟動自動更新
+        viewModel.startAutoUpdate()  // 進入畫面時啟動自動更新
     }
 
     override fun onPause() {
