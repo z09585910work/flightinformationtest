@@ -45,8 +45,6 @@ class FlightViewModel : ViewModel() {
 
                 try {
                     loadFlights()
-                    //val data=repository.
-
                     delay(intervalMillis)
                 } catch (e: Exception) {
 
