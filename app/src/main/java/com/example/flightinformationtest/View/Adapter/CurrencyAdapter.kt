@@ -16,7 +16,7 @@ class CurrencyAdapter :
 
         fun bind(rate: Pair<String, Double>) {
             binding.CurrenName.text = rate.first
-            binding.ExchangRate.text = String.format("%.3f",rate.second)
+            binding.ExchangRate.text = String.format("%.2f",rate.second)
         }
 
     }
