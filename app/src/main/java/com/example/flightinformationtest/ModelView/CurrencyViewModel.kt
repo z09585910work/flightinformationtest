@@ -16,7 +16,8 @@ class CurrencyViewModel: ViewModel() {
     val rates:LiveData<Map<String,Double>> get()=repository.rates
     var updateJobC: Job? =null
 
-    private val API_KEY="fca_live_1dJaKxoSAJGMkXq9YgvFP5VLJc6bkJR0QeidcoM2"
+    //private val API_KEY="fca_live_1dJaKxoSAJGMkXq9YgvFP5VLJc6bkJR0QeidcoM2"
+    private val API_KEY="fca_live_tjVSCZqtDkrZzVtbrDHhwcQ6owO3kLxHJ2hXAHpR"
 
 
     fun loadRates(apiKey:String){
