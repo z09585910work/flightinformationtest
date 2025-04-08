@@ -8,7 +8,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="170dp"
         android:layout_margin="10dp"
         app:cardBackgroundColor="#5DF8FB5D"
         app:cardCornerRadius="10dp"
@@ -16,7 +16,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
 
             <ImageView
                 android:id="@+id/Air_Logo"
