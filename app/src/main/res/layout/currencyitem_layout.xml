@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
+    
     >
 
     <androidx.cardview.widget.CardView
@@ -56,19 +56,22 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingStart="30dp"
+                    android:gravity="start"
+                    android:paddingStart="16dp"
                     android:text="貨幣"
-                    android:textSize="20dp" />
+                    android:textSize="20sp"
+                    android:textColor="#000000" />
 
                 <TextView
                     android:id="@+id/ExchangRate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="right"
-                    android:paddingRight="30dp"
+                    android:gravity="end"
+                    android:paddingEnd="16dp"
                     android:text="匯率(元)"
-                    android:textSize="20dp" />
+                    android:textSize="20sp"
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
