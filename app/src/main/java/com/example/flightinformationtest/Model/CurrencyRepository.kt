@@ -27,7 +27,7 @@ class CurrencyRepository {
                 if (response.isSuccessful) {
                     response.body()?.rates?.let { rate ->
                         _rates.value = mapOf(
-                            
+
                             "USD" to rate.USD,
                             "JPY" to rate.JPY,
                             "CNY" to rate.CNY,
