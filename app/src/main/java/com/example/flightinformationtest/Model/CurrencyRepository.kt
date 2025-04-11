@@ -18,7 +18,9 @@ class CurrencyRepository {
     val error: LiveData<String?> get() = _error
 
     fun fetchLatesRates(apiKey: String) {
-        CurrencyClient.instance.getLatestRates(apiKey).enqueue(object : Callback<CurrencyResponse> {
+        val currencies = "USD,JPY,CNY,EUR,AUD,KRW"
+        val baseCurrency = "JPY"  // 你可以換成任何你要的 base，比如 JPY、USD 等
+        CurrencyClient.instance.getLatestRates(apiKey,currencies,baseCurrency).enqueue(object : Callback<CurrencyResponse> {
             override fun onResponse(
                 call: Call<CurrencyResponse>,
                 response: Response<CurrencyResponse>

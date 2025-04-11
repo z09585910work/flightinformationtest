@@ -18,9 +18,7 @@ class CurrencyViewModel : ViewModel() {
     val rates: LiveData<Map<String, Double>> get() = repository.rates
     var updateJobC: Job? = null
 
-    private val API_KEY = "fca_live_EH2rjenCF9rUcGL74gGt93tD1CzEOhEP7est4z7Q&currencies=EUR%2CUSD%2CCNY%2CAUD%2CJPY%2CKRW&base_currency=JPY"
-    private val API_KEY_JPY = "fca_live_EH2rjenCF9rUcGL74gGt93tD1CzEOhEP7est4z7Q&currencies=EUR%2CUSD%2CCNY%2CAUD%2CJPY%2CKRW&base_currency=AUD"
-    private val API_KEY_ = "fca_live_EH2rjenCF9rUcGL74gGt93tD1CzEOhEP7est4z7Q&currencies=EUR%2CUSD%2CCNY%2CAUD%2CJPY%2CKRW"
+    private val API_KEY = "fca_live_EH2rjenCF9rUcGL74gGt93tD1CzEOhEP7est4z7Q"
 
     private var _inputAmount = MutableLiveData<Double>()
     val inputAmount: LiveData<Double> get() = _inputAmount
