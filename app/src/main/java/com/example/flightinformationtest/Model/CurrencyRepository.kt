@@ -13,14 +13,15 @@ class CurrencyRepository {
 
     private val _rates = MutableLiveData<Map<String, Double>>(emptyMap())
     val rates: LiveData<Map<String, Double>> get() = _rates
+    private val API_KEY = "fca_live_EH2rjenCF9rUcGL74gGt93tD1CzEOhEP7est4z7Q"
 
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> get() = _error
 
-    fun fetchLatesRates(apiKey: String) {
+    fun fetchLatesRates(CURR: String) {
         val currencies = "USD,JPY,CNY,EUR,AUD,KRW"
-        val baseCurrency = "JPY"  // 你可以換成任何你要的 base，比如 JPY、USD 等
-        CurrencyClient.instance.getLatestRates(apiKey,currencies,baseCurrency).enqueue(object : Callback<CurrencyResponse> {
+        val baseCurrency = CURR  // 你可以換成任何你要的 base，比如 JPY、USD 等
+        CurrencyClient.instance.getLatestRates(API_KEY,currencies,baseCurrency).enqueue(object : Callback<CurrencyResponse> {
             override fun onResponse(
                 call: Call<CurrencyResponse>,
                 response: Response<CurrencyResponse>

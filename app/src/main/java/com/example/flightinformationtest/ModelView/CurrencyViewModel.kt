@@ -17,7 +17,6 @@ class CurrencyViewModel : ViewModel() {
     private val repository = CurrencyRepository()
     val rates: LiveData<Map<String, Double>> get() = repository.rates
     var updateJobC: Job? = null
-    private val API_KEY = "fca_live_EH2rjenCF9rUcGL74gGt93tD1CzEOhEP7est4z7Q"
 
     private var _inputAmount = MutableLiveData<Double>()
     val inputAmount: LiveData<Double> get() = _inputAmount
@@ -59,14 +58,7 @@ class CurrencyViewModel : ViewModel() {
 
 
     fun loadRate() {
-        repository.fetchLatesRates(API_KEY)
-
-        repository.rates.observeForever{ newRates ->
-
-            if(newRates.isNotEmpty()){
-
-            }
-        }
+        repository.fetchLatesRates("USD")
 
         Log.d("CurrencyViewModel", "loadRate: " + rates)
     }
