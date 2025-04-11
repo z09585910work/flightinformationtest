@@ -27,9 +27,24 @@ class CurrencyViewModel : ViewModel() {
     private val _showCalculatorEvent = MutableLiveData<View?>()
     val showCalculatorEvent: LiveData<View?> get() = _showCalculatorEvent
 
+    val currList= listOf("USD","JPY","CNY","EUR","AUD","KRW")
 
-    fun loadRates(apiKey: String) {
-        repository.fetchLatesRates(apiKey)
+
+
+    fun loadCURRRates(CURR: Int,baseAmount:Double) {
+        val baseCurrency=currList[CURR]
+        val baseRates=baseAmount
+
+        repository.fetchLatesRates(baseCurrency)
+        repository.rates.observeForever{ reatsMap ->
+
+            if(reatsMap.isNotEmpty()){
+                setInputAmount(baseRates)
+            }
+
+        }
+
+
     }
 
     fun triggerCalculator(anchorView: View) {

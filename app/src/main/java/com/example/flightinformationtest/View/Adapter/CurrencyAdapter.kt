@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flightinformationtest.databinding.CurrencyitemLayoutBinding
 
-class CurrencyAdapter( private val onItemClick: (View) -> Unit// 傳出 itemView 和 position
+class CurrencyAdapter( private val onItemClick: (View,Int) -> Unit// 傳出 itemView 和 position
 ) : RecyclerView.Adapter<CurrencyAdapter.CurrencyViewHolder>() {
 
     private var rates: List<Pair<String, Double>> = emptyList()
@@ -34,7 +34,7 @@ class CurrencyAdapter( private val onItemClick: (View) -> Unit// 傳出 itemView
         holder.bind(rates[position])
 
         holder.itemView.setOnClickListener {
-            onItemClick(it)
+            onItemClick(it,position)
         }
     }
 

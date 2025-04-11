@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.createViewModelLazy
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.flightinformationtest.ModelView.CalculatorViewModel
@@ -30,6 +29,8 @@ class CurrencyFragment : Fragment() {
         CalculatorViewModel()
     }
 
+    private var selectedPosition: Int = -1 // 預設 -1 表示尚未選擇
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +49,8 @@ class CurrencyFragment : Fragment() {
 //        adapter= CurrencyAdapter(emptyList())
         //adapter= CurrencyAdapter()
 
-        adapter=CurrencyAdapter{ itemView ->
+        adapter=CurrencyAdapter{ itemView ,position ->
+            selectedPosition=position
             viewModel.triggerCalculator(itemView)
         }
 
@@ -64,13 +66,6 @@ class CurrencyFragment : Fragment() {
                 Toast.makeText(requireContext(),"數據獲取失敗",Toast.LENGTH_SHORT)
             }
         }
-
-        // 監聽計算後轉換的匯率
-        viewModel.convertedRates.observe(viewLifecycleOwner) { converted ->
-            adapter.updateData(converted.toList())
-            Log.d("CurrencyFragment_2", "convertedRates updated: $converted")
-        }
-
 
         // 監聽是否要彈出計算機
         viewModel.showCalculatorEvent.observe(viewLifecycleOwner) { anchorView ->
@@ -92,11 +87,22 @@ class CurrencyFragment : Fragment() {
         calculatorViewModel.resultEvent.observe(viewLifecycleOwner) { result ->
             result?.let {
                 viewModel.setInputAmount(it) // 將輸入的數值交由 ViewModel 處理
+
+                if(selectedPosition  !=-1){
+                    viewModel.loadCURRRates(selectedPosition,it)
+                }
+
                 viewModel.clearCalculatorEvent()
                 calculatorViewModel.clearResultEvent()
 
                 Log.d("CurrencyFragment_2", " Calculator 結果回傳: $result")
             }
+        }
+
+        // 監聽計算後轉換的匯率
+        viewModel.convertedRates.observe(viewLifecycleOwner) { converted ->
+            adapter.updateData(converted.toList())
+            Log.d("CurrencyFragment_2", "convertedRates updated: $converted")
         }
 
     }
