@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.createViewModelLazy
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.flightinformationtest.ModelView.CalculatorViewModel
 import com.example.flightinformationtest.ModelView.CurrencyViewModel
 import com.example.flightinformationtest.View.Adapter.CurrencyAdapter
+import com.example.flightinformationtest.View.Ui.CalculatorPopup
 import com.example.flightinformationtest.databinding.FragmentCurrencyBinding
 
 class CurrencyFragment : Fragment() {
@@ -19,7 +22,14 @@ class CurrencyFragment : Fragment() {
     private val binding get()=_binding!!
     private val viewModel:CurrencyViewModel by viewModels()
     private lateinit var adapter: CurrencyAdapter
-//    private val API_KEY="fca_live_1dJaKxoSAJGMkXq9YgvFP5VLJc6bkJR0QeidcoM2"
+
+    private var calculatorPopup: CalculatorPopup? = null
+
+    // 將 CalculatorViewModel 宣告在 Fragment 中，讓 Popup 能共用
+    private val calculatorViewModel: CalculatorViewModel by lazy {
+        CalculatorViewModel()
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +46,12 @@ class CurrencyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //viewModel.loadRates(API_KEY)
 //        adapter= CurrencyAdapter(emptyList())
-        adapter= CurrencyAdapter()
+        //adapter= CurrencyAdapter()
+
+        adapter=CurrencyAdapter{ itemView ->
+            viewModel.triggerCalculator(itemView)
+        }
+
         binding.CurrentStateList.layoutManager=LinearLayoutManager(requireContext())
         binding.CurrentStateList.adapter=adapter
 
@@ -50,7 +65,55 @@ class CurrencyFragment : Fragment() {
             }
         }
 
+        // 監聽計算後轉換的匯率
+        viewModel.convertedRates.observe(viewLifecycleOwner) { converted ->
+            adapter.updateData(converted.toList())
+            Log.d("CurrencyFragment_2", "convertedRates updated: $converted")
+        }
+
+
+        // 監聽是否要彈出計算機
+        viewModel.showCalculatorEvent.observe(viewLifecycleOwner) { anchorView ->
+            if (anchorView != null) {
+                showCalculator(anchorView)
+            } else {
+                calculatorPopup?.dismiss()
+            }
+        }
+
+        // 點外部關閉計算機（可點 RecyclerView 背景等）
+        binding.root.setOnTouchListener { _, _ ->
+            viewModel.clearCalculatorEvent()
+            calculatorViewModel.clearResultEvent()
+            false
+        }
+
+        // 監聽 Calculator 結果回傳
+        calculatorViewModel.resultEvent.observe(viewLifecycleOwner) { result ->
+            result?.let {
+                viewModel.setInputAmount(it) // 將輸入的數值交由 ViewModel 處理
+                viewModel.clearCalculatorEvent()
+                calculatorViewModel.clearResultEvent()
+
+                Log.d("CurrencyFragment_2", " Calculator 結果回傳: $result")
+            }
+        }
+
     }
+
+    private fun showCalculator(anchorView: View) {
+        calculatorPopup?.dismiss()
+
+        calculatorPopup = CalculatorPopup(
+            context = requireContext(),
+            lifecycleOwner = viewLifecycleOwner,
+            viewModel = calculatorViewModel // 使用同一個 viewModel
+        )
+
+        calculatorPopup?.show(anchorView)
+        calculatorViewModel.clearResult()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -59,11 +122,13 @@ class CurrencyFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.startAutoUpdateC()
+        //viewModel.startAutoUpdateC()
+        viewModel.loadRate()
     }
 
     override fun onPause() {
         super.onPause()
         viewModel.stopFetchingC()
+
     }
 }
