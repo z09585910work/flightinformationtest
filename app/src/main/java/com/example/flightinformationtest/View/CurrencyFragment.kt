@@ -86,7 +86,7 @@ class CurrencyFragment : Fragment() {
         // 監聽 Calculator 結果回傳
         calculatorViewModel.resultEvent.observe(viewLifecycleOwner) { result ->
             result?.let {
-                viewModel.setInputAmount(it) // 將輸入的數值交由 ViewModel 處理
+                //viewModel.setInputAmount(it) // 將輸入的數值交由 ViewModel 處理
 
                 if(selectedPosition  !=-1){
                     viewModel.loadCURRRates(selectedPosition,it)
