@@ -20,7 +20,7 @@
 
     <FrameLayout
         android:id="@+id/Screen_layout"
-        android:layout_width="402dp"
+        android:layout_width="match_parent"
         android:layout_height="651dp"
         app:layout_constraintBottom_toTopOf="@+id/GuidedTitle"
         app:layout_constraintEnd_toEndOf="parent"
