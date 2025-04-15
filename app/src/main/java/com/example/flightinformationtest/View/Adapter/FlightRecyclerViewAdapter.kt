@@ -16,7 +16,7 @@ class FlightRecyclerViewAdapter :
 
     //private var flightList: List<FlightInfo> = emptyList()
     private var flightList: MutableList<FlightInfo> = mutableListOf()
-    class FlightViewHolder(private val binding: ItemFlight2Binding) :
+    class FlightViewHolder(private val binding: ItemFlightBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(datas: FlightInfo) {
@@ -47,7 +47,7 @@ class FlightRecyclerViewAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlightViewHolder {
         var inflater = LayoutInflater.from(parent.context)
-        var binding = ItemFlight2Binding.inflate(inflater, parent, false)
+        var binding = ItemFlightBinding.inflate(inflater, parent, false)
 
         return FlightViewHolder(binding)
     }
