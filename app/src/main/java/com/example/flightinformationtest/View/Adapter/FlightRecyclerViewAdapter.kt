@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.flightinformationtest.Data.FlightInfo
 import com.example.flightinformationtest.R
+import com.example.flightinformationtest.databinding.ItemFlight2Binding
 import com.example.flightinformationtest.databinding.ItemFlightBinding
 
 class FlightRecyclerViewAdapter :
@@ -15,7 +16,7 @@ class FlightRecyclerViewAdapter :
 
     //private var flightList: List<FlightInfo> = emptyList()
     private var flightList: MutableList<FlightInfo> = mutableListOf()
-    class FlightViewHolder(private val binding: ItemFlightBinding) :
+    class FlightViewHolder(private val binding: ItemFlight2Binding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(datas: FlightInfo) {
@@ -46,7 +47,7 @@ class FlightRecyclerViewAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlightViewHolder {
         var inflater = LayoutInflater.from(parent.context)
-        var binding = ItemFlightBinding.inflate(inflater, parent, false)
+        var binding = ItemFlight2Binding.inflate(inflater, parent, false)
 
         return FlightViewHolder(binding)
     }
