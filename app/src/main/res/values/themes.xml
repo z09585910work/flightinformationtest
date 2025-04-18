@@ -3,6 +3,8 @@
     <style name="Base.Theme.Flightinformationtest" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="materialButtonStyle">@style/AppTheme</item>
+
     </style>
 
     <style name="Theme.Flightinformationtest" parent="Base.Theme.Flightinformationtest" />
@@ -14,5 +16,7 @@
     <style name="CalculatorBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@android:color/transparent</item>
     </style>
+
+
 
 </resources>

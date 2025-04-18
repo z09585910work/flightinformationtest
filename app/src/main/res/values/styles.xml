@@ -4,4 +4,29 @@
         <item name="android:windowEnterAnimation">@anim/popup_slide_in</item>
         <item name="android:windowExitAnimation">@anim/popup_slide_out</item>
     </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:padding">8dp</item>
+
+    </style>
+
+    <style name="MyM3ButtonStyle" parent="Widget.Material3.Button">
+
+        <item name="backgroundTint">#FF9800</item> <!-- 背景色 -->
+        <item name="android:textColor">#FFFFFF</item> <!-- 文字顏色 -->
+
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
 </resources>
