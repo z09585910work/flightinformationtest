@@ -29,6 +29,9 @@ class CurrencyViewModel : ViewModel() {
 
     val currList= listOf("USD","JPY","CNY","EUR","AUD","KRW")
 
+    private val _showCalculatorSheetEvent = MutableLiveData<Boolean>()
+    val showCalculatorSheetEvent: LiveData<Boolean> get() = _showCalculatorSheetEvent
+
 
 
     fun loadCURRRates(CURR: Int,baseAmount:Double) {
@@ -44,7 +47,6 @@ class CurrencyViewModel : ViewModel() {
 
         }
 
-
     }
 
     fun triggerCalculator(anchorView: View) {
@@ -54,6 +56,16 @@ class CurrencyViewModel : ViewModel() {
     fun clearCalculatorEvent() {
         _showCalculatorEvent.value = null
     }
+
+
+    fun triggerCalculator2() {
+        _showCalculatorSheetEvent.value = true
+    }
+
+    fun clearCalculatorSheetEvent2() {
+        _showCalculatorSheetEvent.value = false
+    }
+
 
     fun setInputAmount(amount: Double) {
 

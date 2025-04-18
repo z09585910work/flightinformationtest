@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.flightinformationtest.ModelView.CalculatorViewModel
 import com.example.flightinformationtest.ModelView.CurrencyViewModel
 import com.example.flightinformationtest.View.Adapter.CurrencyAdapter
+import com.example.flightinformationtest.View.Ui.CalculatorBottomSheet
 import com.example.flightinformationtest.View.Ui.CalculatorPopup
 import com.example.flightinformationtest.databinding.FragmentCurrencyBinding
 
@@ -23,6 +24,8 @@ class CurrencyFragment : Fragment() {
     private lateinit var adapter: CurrencyAdapter
 
     private var calculatorPopup: CalculatorPopup? = null
+
+    private lateinit var calculatorBottomSheet: CalculatorBottomSheet
 
     // 將 CalculatorViewModel 宣告在 Fragment 中，讓 Popup 能共用
     private val calculatorViewModel: CalculatorViewModel by lazy {
@@ -49,13 +52,15 @@ class CurrencyFragment : Fragment() {
 //        adapter= CurrencyAdapter(emptyList())
         //adapter= CurrencyAdapter()
 
-        adapter=CurrencyAdapter{ itemView ,position ->
+        adapter=CurrencyAdapter{ _ ,position ->
             selectedPosition=position
-            viewModel.triggerCalculator(itemView)
+            viewModel.triggerCalculator2()
         }
 
         binding.CurrentStateList.layoutManager=LinearLayoutManager(requireContext())
         binding.CurrentStateList.adapter=adapter
+
+        setupCalculatorBottomSheet()
 
         viewModel.rates.observe(viewLifecycleOwner){
             rates->
@@ -68,36 +73,51 @@ class CurrencyFragment : Fragment() {
         }
 
         // 監聽是否要彈出計算機
-        viewModel.showCalculatorEvent.observe(viewLifecycleOwner) { anchorView ->
-            if (anchorView != null) {
-                showCalculator(anchorView)
-            } else {
-                calculatorPopup?.dismiss()
+//        viewModel.showCalculatorEvent.observe(viewLifecycleOwner) { anchorView ->
+//            if (anchorView != null) {
+//                showCalculator(anchorView)
+//            } else {
+//                calculatorPopup?.dismiss()
+//            }
+//        }
+
+        viewModel.showCalculatorSheetEvent.observe(viewLifecycleOwner){ show ->
+
+            if(show == true){
+             calculatorBottomSheet.show()
+             calculatorViewModel.clearResult()
             }
         }
 
+
         // 點外部關閉計算機（可點 RecyclerView 背景等）
+//        binding.root.setOnTouchListener { _, _ ->
+//            viewModel.clearCalculatorEvent()
+//            calculatorViewModel.clearResultEvent()
+//            false
+//        }
+
         binding.root.setOnTouchListener { _, _ ->
-            viewModel.clearCalculatorEvent()
+            viewModel.clearCalculatorSheetEvent2()
             calculatorViewModel.clearResultEvent()
             false
         }
 
         // 監聽 Calculator 結果回傳
-        calculatorViewModel.resultEvent.observe(viewLifecycleOwner) { result ->
-            result?.let {
-                //viewModel.setInputAmount(it) // 將輸入的數值交由 ViewModel 處理
-
-                if(selectedPosition  !=-1){
-                    viewModel.loadCURRRates(selectedPosition,it)
-                }
-
-                viewModel.clearCalculatorEvent()
-                calculatorViewModel.clearResultEvent()
-
-                Log.d("CurrencyFragment_2", " Calculator 結果回傳: $result")
-            }
-        }
+//        calculatorViewModel.resultEvent.observe(viewLifecycleOwner) { result ->
+//            result?.let {
+//                //viewModel.setInputAmount(it) // 將輸入的數值交由 ViewModel 處理
+//
+//                if(selectedPosition  !=-1){
+//                    viewModel.loadCURRRates(selectedPosition,it)
+//                }
+//
+//                viewModel.clearCalculatorEvent()
+//                calculatorViewModel.clearResultEvent()
+//
+//                Log.d("CurrencyFragment_2", " Calculator 結果回傳: $result")
+//            }
+//        }
 
         // 監聽計算後轉換的匯率
         viewModel.convertedRates.observe(viewLifecycleOwner) { converted ->
@@ -118,6 +138,27 @@ class CurrencyFragment : Fragment() {
 
         calculatorPopup?.show(anchorView)
         calculatorViewModel.clearResult()
+    }
+
+
+    private fun setupCalculatorBottomSheet(){
+
+        calculatorBottomSheet=CalculatorBottomSheet(
+            context=requireContext(),
+            lifecycleOwner = viewLifecycleOwner,
+            viewModel = calculatorViewModel
+        )
+
+        calculatorBottomSheet.setOnResult { result ->
+            if (selectedPosition != -1) {
+                viewModel.loadCURRRates(selectedPosition, result)
+            }
+            viewModel.clearCalculatorSheetEvent2()
+            calculatorViewModel.clearResultEvent()
+            Log.d("CurrencyFragment", "Calculator 結果回傳: $result")
+        }
+
+
     }
 
 
