@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 按下狀態 -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#222831"/> <!-- 深色背景 -->
+            <stroke android:width="2dp" android:color="#1E90FF"/> <!-- 螢光藍邊框 -->
+            <corners android:radius="20dp"/>
+        </shape>
+    </item>
+
+    <!-- 正常狀態：白底 + 螢光邊框 -->
+    <item>
+        <layer-list>
+
+            <!-- Glow 光暈層 -->
+            <item android:left="2dp" android:right="2dp" android:top="2dp" android:bottom="2dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="#FFFFFF"/> <!-- 背景實心白 -->
+                    <stroke android:width="4dp" android:color="#441E90FF"/> <!-- 螢光暈光（淡） -->
+                    <corners android:radius="20dp"/>
+                </shape>
+            </item>
+
+            <!-- 螢光邊框層 -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#FFFFFF"/> <!-- 再次強調白底 -->
+                    <stroke android:width="2dp" android:color="#1E90FF"/>
+                    <corners android:radius="20dp"/>
+                </shape>
+            </item>
+
+        </layer-list>
+    </item>
+
+</selector>

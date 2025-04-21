@@ -16,4 +16,8 @@
     <color name="calculatorkey_bg">#2C2C2C</color> <!-- 深灰色 -->
     <color name="calculatort_s">#89E6E6E6</color>
 
+    <color name="Dark_Gunmetal">#2B2B2B</color>
+
+    <color name="text_">#1E90FF</color>
+
 </resources>
