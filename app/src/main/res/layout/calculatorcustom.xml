@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -10,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -37,29 +38,35 @@
         android:id="@+id/cardView_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/black"
+
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:cardCornerRadius="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
+            android:paddingRight="30dp"
+            android:paddingLeft="30dp"
+
+            android:background="@color/black"
             >
 
             <!-- 清除按鈕 -->
             <Button
                 android:id="@+id/btn_clear"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/button_hight"
 
 
                 android:layout_marginEnd="3dp"
                 android:layout_marginRight="3dp"
 
-                android:background="@color/button_text"
+                android:background="@drawable/calclatuorbutton_select1"
                 android:text="@string/clear_entire"
                 android:textSize="30sp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -70,10 +77,10 @@
             <Button
                 android:id="@+id/btn_del"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/button_hight"
 
 
-                android:background="@color/button_text"
+                android:background="@drawable/calclatuorbutton_select1"
                 android:text="@string/delete"
                 android:textSize="25sp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -84,9 +91,9 @@
             <Button
                 android:id="@+id/btn_7"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/button_hight"
                 android:layout_marginTop="3dp"
-                android:background="@color/button_text"
+                android:background="@drawable/calclatuorbutton_select1"
                 android:text="@string/_7"
                 android:textSize="30sp"
                 app:layout_constraintTop_toBottomOf="@+id/btn_clear"
@@ -96,12 +103,12 @@
             <Button
                 android:id="@+id/btn_8"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/button_hight"
 
                 android:layout_marginStart="3dp"
                 android:layout_marginLeft="3dp"
 
-                android:background="@color/button_text"
+                android:background="@drawable/calclatuorbutton_select1"
                 android:text="@string/_8"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toStartOf="@+id/btn_9"
@@ -111,12 +118,12 @@
             <Button
                 android:id="@+id/btn_9"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/button_hight"
                 android:layout_marginLeft="3dp"
 
                 android:paddingLeft="33dp"
 
-                android:background="@color/button_text"
+                android:background="@drawable/calclatuorbutton_select1"
                 android:text="@string/_9"
                 android:textSize="30sp"
                 app:layout_constraintTop_toTopOf="@+id/btn_7"
@@ -127,9 +134,9 @@
             <Button
                 android:id="@+id/btn_4"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/button_hight"
                 android:layout_marginTop="3dp"
-                android:background="@color/button_text"
+                android:background="@drawable/calclatuorbutton_select1"
                 android:text="@string/_4"
                 android:textSize="30sp"
                 app:layout_constraintTop_toBottomOf="@+id/btn_7"
@@ -139,10 +146,10 @@
             <Button
                 android:id="@+id/btn_5"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/button_hight"
                 android:layout_marginStart="3dp"
                 android:layout_marginLeft="3dp"
-                android:background="@color/button_text"
+                android:background="@drawable/calclatuorbutton_select1"
                 android:text="@string/_5"
                 android:textSize="30sp"
                 app:layout_constraintTop_toTopOf="@+id/btn_4"
@@ -152,11 +159,11 @@
             <Button
                 android:id="@+id/btn_6"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/button_hight"
                 android:layout_marginLeft="3dp"
                 android:paddingLeft="33sp"
 
-                android:background="@color/button_text"
+                android:background="@drawable/calclatuorbutton_select1"
                 android:text="@string/_6"
                 android:textSize="30sp"
                 app:layout_constraintTop_toTopOf="@+id/btn_4"
@@ -167,9 +174,9 @@
             <Button
                 android:id="@+id/btn_1"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/button_hight"
                 android:layout_marginTop="3dp"
-                android:background="@color/button_text"
+                android:background="@drawable/calclatuorbutton_select1"
                 android:text="@string/_1"
                 android:textSize="30sp"
                 app:layout_constraintTop_toBottomOf="@+id/btn_4"
@@ -179,14 +186,14 @@
             <Button
                 android:id="@+id/btn_2"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/button_hight"
 
                 android:layout_marginStart="3dp"
                 android:layout_marginLeft="3dp"
                 android:layout_marginEnd="3dp"
                 android:layout_marginRight="3dp"
 
-                android:background="@color/button_text"
+                android:background="@drawable/calclatuorbutton_select1"
                 android:text="@string/_2"
                 android:textSize="30sp"
                 app:layout_constraintTop_toTopOf="@+id/btn_1"
@@ -196,10 +203,10 @@
             <Button
                 android:id="@+id/btn_3"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/button_hight"
                 android:paddingLeft="31dp"
 
-                android:background="@color/button_text"
+                android:background="@drawable/calclatuorbutton_select1"
                 android:text="@string/_3"
                 android:textSize="30sp"
                 app:layout_constraintTop_toTopOf="@+id/btn_1"
@@ -210,9 +217,9 @@
             <Button
                 android:id="@+id/btn_0"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/button_hight"
                 android:layout_marginTop="3dp"
-                android:background="@color/button_text"
+                android:background="@drawable/calclatuorbutton_select1"
                 android:text="@string/_0"
                 android:textSize="30sp"
                 app:layout_constraintTop_toBottomOf="@+id/btn_1"
@@ -222,10 +229,10 @@
             <Button
                 android:id="@+id/btn_decimal"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/button_hight"
                 android:layout_marginStart="3dp"
                 android:layout_marginLeft="3dp"
-                android:background="@color/button_text"
+                android:background="@drawable/calclatuorbutton_select1"
                 android:text="@string/_dot"
                 android:textSize="30sp"
                 app:layout_constraintTop_toTopOf="@+id/btn_0"
@@ -236,7 +243,7 @@
                 style="@style/MyM3ButtonStyle"
                 android:id="@+id/btn_result"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/button_hight"
 
                 android:layout_marginLeft="3dp"
                 android:paddingLeft="33sp"
